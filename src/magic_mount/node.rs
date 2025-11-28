@@ -14,7 +14,7 @@ use rustix::path::Arg;
 use crate::defs::{REPLACE_DIR_FILE_NAME, REPLACE_DIR_XATTR};
 
 #[derive(PartialEq, Eq, Hash, Clone, Debug)]
-pub(super) enum NodeFileType {
+pub enum NodeFileType {
     RegularFile,
     Directory,
     Symlink,
@@ -22,7 +22,7 @@ pub(super) enum NodeFileType {
 }
 
 impl NodeFileType {
-    pub(super) fn from_file_type(file_type: FileType) -> Option<Self> {
+    pub fn from_file_type(file_type: FileType) -> Option<Self> {
         if file_type.is_file() {
             Some(Self::RegularFile)
         } else if file_type.is_dir() {
@@ -36,14 +36,14 @@ impl NodeFileType {
 }
 
 #[derive(Debug)]
-pub(super) struct Node {
-    pub(super) name: String,
-    pub(super) file_type: NodeFileType,
-    pub(super) children: HashMap<String, Node>,
+pub struct Node {
+    pub name: String,
+    pub file_type: NodeFileType,
+    pub children: HashMap<String, Node>,
     // the module that owned this node
-    pub(super) module_path: Option<PathBuf>,
-    pub(super) replace: bool,
-    pub(super) skip: bool,
+    pub module_path: Option<PathBuf>,
+    pub replace: bool,
+    pub skip: bool,
 }
 
 impl fmt::Display for NodeFileType {
@@ -76,7 +76,7 @@ impl fmt::Display for Node {
     }
 }
 impl Node {
-    pub(super) fn collect_module_files<T: AsRef<Path>>(&mut self, module_dir: T) -> Result<bool> {
+    pub fn collect_module_files<T: AsRef<Path>>(&mut self, module_dir: T) -> Result<bool> {
         let dir = module_dir.as_ref();
         let mut has_file = false;
         for entry in dir.read_dir()?.flatten() {
@@ -99,7 +99,7 @@ impl Node {
         Ok(has_file)
     }
 
-    pub(super) fn dir_is_replace<P>(path: P) -> Result<bool>
+    pub fn dir_is_replace<P>(path: P) -> Result<bool>
     where
         P: AsRef<Path>,
     {
@@ -124,7 +124,7 @@ impl Node {
         if exists == 0 { Ok(true) } else { Ok(false) }
     }
 
-    pub(super) fn new_root<T: ToString>(name: T) -> Self {
+    pub fn new_root<T: ToString>(name: T) -> Self {
         Node {
             name: name.to_string(),
             file_type: NodeFileType::Directory,
@@ -135,7 +135,7 @@ impl Node {
         }
     }
 
-    pub(super) fn new_module<T: ToString>(name: T, entry: &DirEntry) -> Option<Self> {
+    pub fn new_module<T: ToString>(name: T, entry: &DirEntry) -> Option<Self> {
         if let Ok(metadata) = entry.metadata() {
             let path = entry.path();
             let file_type = if metadata.file_type().is_char_device() && metadata.rdev() == 0 {
