@@ -50,14 +50,14 @@ fn collect_module_files(module_dir: &Path, extra_partitions: &[String]) -> Resul
             continue;
         }
 
-        let module_system = entry.path().join("system");
-        if !module_system.is_dir() {
+        let mod_system = entry.path().join("system");
+        if !mod_system.is_dir() {
             continue;
         }
 
         log::debug!("collecting {}", entry.path().display());
 
-        has_file |= system.collect_module_files(&module_system)?;
+        has_file |= system.collect_module_files(&mod_system)?;
     }
 
     if has_file {
