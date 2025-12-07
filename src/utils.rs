@@ -80,6 +80,7 @@ fn is_writable_tmpfs(path: &Path) -> bool {
         log::debug!("{} is a tmpfs", path.display());
     } else {
         log::debug!("failed to read /proc/mounts");
+        return false;
     }
 
     let test_file = path.join(format!(".mm_test_{}", std::process::id()));
