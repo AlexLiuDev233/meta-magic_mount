@@ -9,6 +9,7 @@ pub struct ModuleInfo {
     pub id: String,
     pub name: String,
     pub version: String,
+    pub author: String,
     pub description: String,
     pub disabled: bool,
     pub skip: bool,
@@ -65,6 +66,7 @@ where
             let prop = fs::read_to_string(prop_path).unwrap_or(String::new());
             let name = read_prop(&prop, "name").unwrap_or_else(|| id.clone());
             let version = read_prop(&prop, "version").unwrap_or_else(|| "unknown".to_string());
+            let author = read_prop(&prop, "author").unwrap_or_else(|| "unknown".to_string());
             let description =
                 read_prop(&prop, "description").unwrap_or_else(|| "unknown".to_string());
 
@@ -72,6 +74,7 @@ where
                 id,
                 name,
                 version,
+                author,
                 description,
                 disabled,
                 skip,
