@@ -9,7 +9,7 @@ updates:
         patterns:
           - "*"
   - package-ecosystem: "cargo" # See documentation for possible values
-    directory: "/xbuild" # Location of package manifests
+    directory: "/xtask" # Location of package manifests
     schedule:
       interval: "weekly"
     groups:
