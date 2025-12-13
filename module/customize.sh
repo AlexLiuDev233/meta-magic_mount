@@ -6,12 +6,6 @@ fi
 
 ui_print "- Detecting device architecture..."
 
-# Detect architecture using ro.product.cpu.abi
-ABI=$(grep_get_prop ro.product.cpu.abi)
-ui_print "- Detected ABI: $ABI"
-
-ui_print "- Installing $ARCH_BINARY as meta-mm"
-
 # Rename the selected binary to the generic name
 mv "$MODPATH/magic_mount_rs" "$MODPATH/meta-mm" || abort "! Failed to rename binary"
 
