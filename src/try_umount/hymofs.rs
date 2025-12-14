@@ -44,9 +44,7 @@ where
         r#type: 0,
     };
 
-    let ret = unsafe {
-        hymofs_hide(fd, &cmd)
-    }?;
+    let ret = unsafe { hymofs_hide(fd, &raw const cmd) }?;
     if ret < 0 {
         log::error!(
             "umount {} failed: {}",
