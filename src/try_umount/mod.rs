@@ -34,7 +34,7 @@ where
 
         if let Some(name) = path.file_name()
             && name.to_string_lossy().to_string().contains("zygisksu")
-            && fs::read_to_string("/data/adb/zygisksu/denylist_enforce")?.trim() == "0"
+            && fs::read_to_string("/data/adb/zygisksu/denylist_enforce")?.trim() != "0"
         {
             log::warn!("zn was detected, and try_umount was cancelled.");
             return Ok(());
