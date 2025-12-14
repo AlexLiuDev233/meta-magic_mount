@@ -51,10 +51,8 @@ where
                 continue;
             }
 
-            for i in PERFIX {
-                if !path.join(i).is_dir() {
-                    continue;
-                }
+            if PERFIX.iter().all(|p| !path.join(p).is_dir()) {
+                continue;
             }
 
             let disabled =
