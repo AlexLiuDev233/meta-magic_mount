@@ -8,10 +8,11 @@ use std::{
 };
 
 use anyhow::Result;
+use nix::ioctl_write_ptr;
 use rustix::path::Arg;
 
 const HYMO_IOC_MAGIC: u32 = 0xE0;
-const HYMO_IOCTL_HIDE: u64 = ioctl_cmd_write(3, std::mem::size_of::<HymoHide>());
+ioctl_write_ptr!(hymofs_hide, HYMO_IOC_MAGIC, 3, HymoHide);
 pub(super) const HYMO_DEV: &[&str] = &["/dev/hymo_ctl", "/proc/hymo_ctl"];
 static DRIVER_FD: OnceLock<RawFd> = OnceLock::new();
 
@@ -20,11 +21,6 @@ struct HymoHide {
     src: *const c_char,
     target: *const c_char,
     r#type: c_int,
-}
-
-const fn ioctl_cmd_write(nr: u32, size: usize) -> u64 {
-    let size = size as u64;
-    (1u32 << 30) as u64 | (size << 16) | ((HYMO_IOC_MAGIC as u64) << 8) | nr as u64
 }
 
 pub(super) fn send_hide_hymofs<P>(target: P) -> Result<()>
@@ -49,15 +45,8 @@ where
     };
 
     let ret = unsafe {
-        #[cfg(not(target_env = "gnu"))]
-        {
-            libc::ioctl(fd, HYMO_IOCTL_HIDE as i32, &cmd)
-        }
-        #[cfg(target_env = "gnu")]
-        {
-            libc::ioctl(fd, HYMO_IOCTL_HIDE, &cmd)
-        }
-    };
+        hymofs_hide(fd, &cmd)
+    }?;
     if ret < 0 {
         log::error!(
             "umount {} failed: {}",
