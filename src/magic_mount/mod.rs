@@ -45,7 +45,7 @@ fn collect_module_files(module_dir: &Path, extra_partitions: &[String]) -> Resul
                 if line.starts_with("name")
                     && let Some((_, value)) = line.split_once('=')
                 {
-                    validate_module_id(&value)?;
+                    validate_module_id(value)?;
                 }
             }
         }

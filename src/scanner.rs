@@ -77,7 +77,7 @@ where
             let description =
                 read_prop(&prop, "description").unwrap_or_else(|| "unknown".to_string());
 
-            if let Ok(_) = validate_module_id(&id) {
+            if validate_module_id(&id).is_ok() {
                 modules.push(ModuleInfo {
                     id,
                     name,

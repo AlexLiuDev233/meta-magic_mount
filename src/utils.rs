@@ -12,7 +12,7 @@ use regex_lite::Regex;
 use crate::defs::SELINUX_XATTR;
 use crate::defs::TMPFS_CANDIDATES;
 
-/// Validate module_id format and security
+/// Validate `module_id` format and security
 /// Module ID must match: ^[a-zA-Z][a-zA-Z0-9._-]+$
 /// - Must start with a letter (a-zA-Z)
 /// - Followed by one or more alphanumeric, dot, underscore, or hyphen characters
@@ -23,8 +23,7 @@ pub fn validate_module_id(module_id: &str) -> Result<()> {
         Ok(())
     } else {
         Err(anyhow!(
-            "Invalid module ID: '{}'. Must match /^[a-zA-Z][a-zA-Z0-9._-]+$/",
-            module_id
+            "Invalid module ID: '{module_id}'. Must match /^[a-zA-Z][a-zA-Z0-9._-]+$/"
         ))
     }
 }
