@@ -5,7 +5,7 @@ use std::{
 
 use anyhow::{Context, Result, anyhow, bail};
 #[cfg(any(target_os = "linux", target_os = "android"))]
-use extattr::{Flags as XattrFlags, lsetxattr};
+use extattr::{Flags as XattrFlags, lgetxattr, lsetxattr};
 use regex_lite::Regex;
 
 #[cfg(any(target_os = "linux", target_os = "android"))]
@@ -44,7 +44,7 @@ pub fn lgetfilecon<P>(path: P) -> Result<String>
 where
     P: AsRef<Path>,
 {
-    let con = extattr::lgetxattr(&path, SELINUX_XATTR).with_context(|| {
+    let con = lgetxattr(&path, SELINUX_XATTR).with_context(|| {
         format!(
             "Failed to get SELinux context for {}",
             path.as_ref().display()
