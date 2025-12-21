@@ -81,8 +81,12 @@ fn main() -> Result<()> {
     }
 
     log::info!("Magic Mount Starting");
-
     log::info!("config info:\n{config}");
+
+    log::debug!(
+        "current selinux: {}",
+        std::fs::read_to_string("/proc/self/attr/current")?
+    );
 
     let tempdir = utils::select_temp_dir().context("failed to select temp dir automatically")?;
 
