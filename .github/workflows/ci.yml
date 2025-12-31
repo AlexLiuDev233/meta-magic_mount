@@ -57,9 +57,8 @@ jobs:
           cache: pnpm
           cache-dependency-path: webui/pnpm-lock.yaml
       - uses: Swatinem/rust-cache@v2
-        if: github.event_name == 'push'
         with:
-          shared-key: "ndk-rust"
+          save-if: ${{ github.event_name == 'push' }}
       - name: Install build dependencies
         run: |
           sudo apt update
