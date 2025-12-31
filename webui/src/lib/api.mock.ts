@@ -1,23 +1,28 @@
-import { DEFAULT_CONFIG } from './constants';
-import type { MagicConfig, MagicModule, StorageUsage, SystemInfo, DeviceStatus } from './api';
+import type {
+  DeviceStatus,
+  MagicConfig,
+  MagicModule,
+  StorageUsage,
+  SystemInfo,
+} from "./api";
+import { DEFAULT_CONFIG } from "./constants";
 
 const MOCK_DELAY = 600;
 
-function delay(ms: number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const MockAPI = {
   loadConfig: async (): Promise<MagicConfig> => {
     await delay(MOCK_DELAY);
     console.log("[MockAPI] loadConfig");
+
     return {
       ...DEFAULT_CONFIG,
-      moduledir: '/data/adb/modules',
-      mountsource: 'KSU',
+      moduledir: "/data/adb/modules",
+      mountsource: "KSU",
       verbose: true,
-      umount: true, 
-      partitions: ['product', 'system_ext', 'vendor']
+      umount: true,
+      partitions: ["product", "system_ext", "vendor"],
     };
   },
 
@@ -26,9 +31,10 @@ export const MockAPI = {
     console.log("[MockAPI] saveConfig:", config);
   },
 
-  scanModules: async (moduleDir: string): Promise<MagicModule[]> => {
+  scanModules: async (_moduleDir: string): Promise<MagicModule[]> => {
     await delay(MOCK_DELAY);
     console.log("[MockAPI] scanModules");
+
     return [
       {
         id: "youtube-revanced",
@@ -37,8 +43,8 @@ export const MockAPI = {
         author: "ReVanced Team",
         description: "YouTube ReVanced Module",
         is_mounted: true,
-        mode: 'magic',
-        rules: { default_mode: 'magic', paths: {} }
+        mode: "magic",
+        rules: { default_mode: "magic", paths: {} },
       },
       {
         id: "pixelfy-gphotos",
@@ -47,8 +53,8 @@ export const MockAPI = {
         author: "PixelProps",
         description: "Unlimited Google Photos backup for Pixel devices.",
         is_mounted: true,
-        mode: 'magic',
-        rules: { default_mode: 'magic', paths: {} }
+        mode: "magic",
+        rules: { default_mode: "magic", paths: {} },
       },
       {
         id: "sound-enhancer",
@@ -57,15 +63,16 @@ export const MockAPI = {
         author: "AudioMod",
         description: "Improves system audio quality. Currently disabled.",
         is_mounted: false,
-        mode: 'magic',
-        rules: { default_mode: 'magic', paths: {} }
-      }
+        mode: "magic",
+        rules: { default_mode: "magic", paths: {} },
+      },
     ];
   },
 
-  readLogs: async (logPath?: string, lines?: number): Promise<string> => {
+  readLogs: async (_logPath?: string, _lines?: number): Promise<string> => {
     await delay(MOCK_DELAY);
     console.log("[MockAPI] readLogs");
+
     return `[I] Magic Mount Daemon v1.0.0 started
 [I] Mounting source: KSU
 [I] Loading config from /data/adb/magic_mount/config.toml
@@ -82,52 +89,58 @@ export const MockAPI = {
 
   getStorageUsage: async (): Promise<StorageUsage> => {
     await delay(MOCK_DELAY);
+
     return {
-      type: 'ext4',
-      percent: '42%',
-      size: '118 GB',
-      used: '50 GB',
-      hymofs_available: false 
+      type: "ext4",
+      percent: "42%",
+      size: "118 GB",
+      used: "50 GB",
+      hymofs_available: false,
     };
   },
 
   getSystemInfo: async (): Promise<SystemInfo> => {
     await delay(MOCK_DELAY);
+
     return {
-      kernel: '5.10.101-android12-9-00001-g532145',
-      selinux: 'Enforcing',
-      mountBase: '/data/adb/modules',
-      activeMounts: ['youtube-revanced', 'pixelfy-gphotos']
+      kernel: "5.10.101-android12-9-00001-g532145",
+      selinux: "Enforcing",
+      mountBase: "/data/adb/modules",
+      activeMounts: ["youtube-revanced", "pixelfy-gphotos"],
     };
   },
 
   getDeviceStatus: async (): Promise<DeviceStatus> => {
     await delay(MOCK_DELAY);
+
     return {
-      model: 'Pixel 8 Pro (Mock)',
-      android: '14',
-      kernel: '5.10.101-mock',
-      selinux: 'Enforcing'
+      model: "Pixel 8 Pro (Mock)",
+      android: "14",
+      kernel: "5.10.101-mock",
+      selinux: "Enforcing",
     };
   },
 
   getVersion: async (): Promise<string> => {
     await delay(MOCK_DELAY);
+
     return "1.2.0-mock";
   },
 
   reboot: async (): Promise<void> => {
     console.log("[MockAPI] Reboot requested");
+    // eslint-disable-next-line no-alert
     alert("Reboot requested (Mock)");
   },
 
   openLink: async (url: string) => {
     console.log("[MockAPI] Open link:", url);
-    window.open(url, '_blank');
+    window.open(url, "_blank");
   },
 
   fetchSystemColor: async (): Promise<string | null> => {
     await delay(500);
-    return '#50a48f'; 
-  }
+
+    return "#50a48f";
+  },
 };

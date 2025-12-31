@@ -12,7 +12,7 @@
   gap: 16px;
   padding: 40px 0;
   background-color: var(--md-sys-color-surface-container);
-  border-radius: 32px; 
+  border-radius: 32px;
   box-shadow: none;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .app-name {
-  font-size: 32px;  
+  font-size: 32px;
   font-weight: 600;
   color: var(--md-sys-color-on-surface);
   margin-top: 8px;
@@ -38,7 +38,7 @@
   font-size: 14px;
   background: var(--md-sys-color-surface-container-high);
   padding: 8px 20px;
-  border-radius: 9999px;  
+  border-radius: 9999px;
   color: var(--md-sys-color-primary);
   font-weight: 500;
 }
@@ -62,7 +62,7 @@
 }
 
 .section-title {
-  font-size: 20px;  
+  font-size: 20px;
   font-weight: 400;
   margin: 0 0 8px 8px;
   color: var(--md-sys-color-on-surface);

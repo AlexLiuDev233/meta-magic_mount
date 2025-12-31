@@ -18,9 +18,9 @@
 }
 
 .desc-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .desc-text {
@@ -31,14 +31,14 @@
 
 /* Search Section */
 .search-section {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .search-field {
-    width: 100%;
-    /* Match the 16px border-radius of module-card and desc-card */
-    --md-outlined-text-field-container-shape: 16px;
+  width: 100%;
+  /* Match the 16px border-radius of module-card and desc-card */
+  --md-outlined-text-field-container-shape: 16px;
 }
 
 /* Empty State */
@@ -63,9 +63,9 @@
 }
 
 .empty-icon md-icon {
-    font-size: 32px;
-    width: 32px;
-    height: 32px;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 /* Modules List */
@@ -84,12 +84,12 @@
 }
 
 .module-card.expanded {
-    background-color: var(--md-sys-color-surface-container-high);
-    border-color: var(--md-sys-color-outline-variant);
+  background-color: var(--md-sys-color-surface-container-high);
+  border-color: var(--md-sys-color-outline-variant);
 }
 
 .module-card.unmounted {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .card-main {
@@ -114,9 +114,9 @@
 }
 
 .module-meta-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .module-id {
@@ -136,22 +136,22 @@
 
 /* Status Badge */
 .status-badge {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px 12px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .status-badge.magic {
-    background-color: var(--md-sys-color-primary-container);
-    color: var(--md-sys-color-on-primary-container);
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
 }
 
 .status-badge.skipped {
-    background-color: var(--md-sys-color-surface-variant);
-    color: var(--md-sys-color-on-surface-variant);
+  background-color: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
 }
 
 /* Details Section */
@@ -166,48 +166,48 @@
 }
 
 .detail-row {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .detail-row.description {
-    margin-top: 4px;
+  margin-top: 4px;
 }
 
 .detail-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--md-sys-color-primary);
-    font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--md-sys-color-primary);
+  font-weight: 500;
 }
 
 .detail-value {
-    font-size: 14px;
-    color: var(--md-sys-color-on-surface);
-    margin: 0;
-    line-height: 1.5;
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface);
+  margin: 0;
+  line-height: 1.5;
 }
 
 /* Alert Box */
 .status-alert {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background-color: var(--md-sys-color-error-container);
-    color: var(--md-sys-color-on-error-container);
-    padding: 12px;
-    border-radius: 12px;
-    font-size: 13px;
-    margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  margin-top: 8px;
 }
 
 .alert-icon {
-    color: inherit;
+  color: inherit;
 }
 
 /* Skeleton */
 .skeleton-card {
-    padding: 16px;
-    min-height: 72px;
+  padding: 16px;
+  min-height: 72px;
 }

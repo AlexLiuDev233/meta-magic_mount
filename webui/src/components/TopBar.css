@@ -4,7 +4,9 @@
   color: var(--md-sys-color-on-surface);
   height: 120px;
   padding-top: var(--safe-area-inset-top, 0px);
-  transition: background-color 0.3s ease, height 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    height 0.3s ease;
   position: relative;
   z-index: 20;
   display: flex;
@@ -58,7 +60,7 @@
 }
 .menu-dropdown {
   position: absolute;
-  top: 100%; 
+  top: 100%;
   right: 0;
   margin-top: 4px;
   background: var(--md-sys-color-surface-container-high);
@@ -66,7 +68,7 @@
   padding: 8px 0;
   z-index: 1000;
   min-width: 200px;
-  overflow: hidden; 
+  overflow: hidden;
   box-shadow: var(--md-sys-elevation-2);
 }
 .menu-item {

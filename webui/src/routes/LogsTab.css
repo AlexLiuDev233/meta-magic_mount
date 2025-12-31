@@ -14,18 +14,18 @@
   justify-content: space-between;
   gap: 12px;
   background-color: var(--md-sys-color-surface-container);
-  border-radius: 9999px; 
+  border-radius: 9999px;
   padding: 0 8px 0 20px;
-  height: 56px; 
+  height: 56px;
   flex-shrink: 0;
 }
 
 .search-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-    min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
 }
 
 .search-icon {
@@ -52,9 +52,9 @@
 }
 
 .controls-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .log-auto-group {
@@ -66,8 +66,8 @@
 /* Adjust md-checkbox size implicitly via touch target if needed, 
    but standard size is usually fine in toolbar */
 md-checkbox {
-    --md-checkbox-container-shape: 4px;
-    margin: 0;
+  --md-checkbox-container-shape: 4px;
+  margin: 0;
 }
 
 .log-auto-label {
@@ -101,13 +101,13 @@ md-checkbox {
 }
 
 .log-filter-select:hover {
-    background-color: var(--md-sys-color-surface-container-high);
+  background-color: var(--md-sys-color-surface-container-high);
 }
 
 /* Log Viewer Container */
 .log-viewer {
-  background-color: var(--md-sys-color-surface-container-low);  
-  border-radius: 24px; 
+  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: 24px;
   padding: 16px;
   font-family: monospace;
   font-size: 11px;
@@ -135,10 +135,20 @@ md-checkbox {
 }
 
 /* Colors matching terminal output styles */
-.log-info { color: var(--md-sys-color-on-surface); }
-.log-warn { color: var(--md-sys-color-tertiary); }
-.log-debug { color: var(--md-sys-color-secondary); opacity: 0.8; }
-.log-error { color: var(--md-sys-color-error); font-weight: 700; }
+.log-info {
+  color: var(--md-sys-color-on-surface);
+}
+.log-warn {
+  color: var(--md-sys-color-tertiary);
+}
+.log-debug {
+  color: var(--md-sys-color-secondary);
+  opacity: 0.8;
+}
+.log-error {
+  color: var(--md-sys-color-error);
+  font-weight: 700;
+}
 
 .log-empty-state {
   height: 100%;
@@ -166,7 +176,7 @@ md-checkbox {
   background: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-primary-container);
   border: none;
-  border-radius: 9999px; 
+  border-radius: 9999px;
   padding: 8px 16px;
   display: flex;
   align-items: center;
@@ -175,8 +185,10 @@ md-checkbox {
   font-size: 12px;
   font-weight: 600;
   z-index: 10;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .scroll-fab:active {

@@ -2,7 +2,7 @@
   display: flex;
   background-color: var(--md-sys-color-surface-container);
   border-top: none;
-  box-shadow: none; 
+  box-shadow: none;
   padding-bottom: max(16px, var(--safe-area-inset-bottom, 0px));
   padding-top: 16px;
   padding-left: 24px;
@@ -12,7 +12,7 @@
   -ms-overflow-style: none;
   gap: 8px;
   z-index: 100;
-  transition: padding-bottom 0.3s ease; 
+  transition: padding-bottom 0.3s ease;
 }
 .bottom-nav.fix-padding {
   padding-bottom: calc(max(16px, var(--safe-area-inset-bottom, 0px)) + 48px);

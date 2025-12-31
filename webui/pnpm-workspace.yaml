@@ -1,0 +1,7 @@
+shellEmulator: true
+
+ignoredBuiltDependencies:
+  - esbuild
+
+onlyBuiltDependencies:
+  - unrs-resolver

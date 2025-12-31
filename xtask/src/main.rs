@@ -219,14 +219,13 @@ fn cargo_ndk() -> Command {
 }
 
 fn build_webui() -> Result<()> {
-    let npm = || {
-        let mut command = Command::new("npm");
+    let pnpm = || {
+        let mut command = Command::new("pnpm");
         command.current_dir("webui");
         command
     };
 
-    npm().arg("install").spawn()?.wait()?;
-    npm().args(["run", "build"]).spawn()?.wait()?;
+    pnpm().args(["run", "build"]).spawn()?.wait()?;
 
     Ok(())
 }
