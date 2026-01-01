@@ -1,0 +1,49 @@
+name: Sync to Target Repo on Tag
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  sync-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gh
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo "${{ secrets.PERSONAL_TOKEN }}" | gh auth login --with-token
+
+      - name: Download release assets from source repo
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: |
+          mkdir -p assets
+          gh release download "$TAG_NAME" \
+            --repo "$GITHUB_REPOSITORY" \
+            --dir assets
+
+      - name: Create or update release in target repo
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+        run: |
+          set -e
+
+          TARGET_REPO="KernelSU-Modules-Repo/magic_mount_rs"
+
+          if ! gh release view "$TAG_NAME" --repo "$TARGET_REPO" > /dev/null 2>&1; then
+            gh release create "$TAG_NAME" \
+              --repo "$TARGET_REPO" \
+              --title "$RELEASE_NAME" \
+              --notes "$RELEASE_BODY"
+          fi
+
+          gh release upload "$TAG_NAME" assets/* \
+            --repo "$TARGET_REPO" \
+            --clobber
