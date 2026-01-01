@@ -329,7 +329,7 @@ where
 
                 log::debug!(
                     "modules tree:\n{}",
-                    String::from_utf8_lossy(&output?.stdout).to_string()
+                    String::from_utf8_lossy(&output?.stdout)
                 );
 
                 Ok(())
@@ -355,6 +355,12 @@ where
         if let Err(e) = unmount(&tmp_dir, UnmountFlags::DETACH) {
             log::error!("failed to unmount tmp {e}");
         }
+        crate::ksu::try_umount::LIST.lock().unwrap().flags(2);
+        crate::ksu::try_umount::LIST
+            .lock()
+            .unwrap()
+            .format_msg(|p| format!("umount {p:?} successful"));
+        crate::ksu::try_umount::LIST.lock().unwrap().umount()?;
         fs::remove_dir(tmp_dir).ok();
 
         let mounted_symbols = MOUNTDED_SYMBOLS_FILES.load(std::sync::atomic::Ordering::Relaxed);
